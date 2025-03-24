@@ -1,4 +1,5 @@
-import { Button, HStack, Heading, Stack, Container, Flex } from "@chakra-ui/react"
+import { Heading, Stack, Container, Flex } from "@chakra-ui/react"
+import MenuBar from "./components/MenuBar"
 import { useState, useEffect } from "react"
 import TrialGrid from "./components/TrialGrid"
 
@@ -28,8 +29,11 @@ function App() {
     <>
       <Stack minH="100vh">
         <Container maxWidth={'1200px'} my={4}>
-          <Heading marginBottom={4}>Clinical Lens</Heading>
-          <Flex>
+          <Flex alignItems={'center'} justifyContent={'space-between'} marginBottom={4}>
+            <Heading>Clinical Lens</Heading>
+            <MenuBar />
+          </Flex>
+          <Flex justifyContent={'center'}>
             <TrialGrid trials={trials} />
           </Flex>
         </Container>
