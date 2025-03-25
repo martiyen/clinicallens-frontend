@@ -1,4 +1,4 @@
-import { Stack, Pagination, ButtonGroup, IconButton } from "@chakra-ui/react"
+import { Stack, Pagination, ButtonGroup, IconButton, EmptyState } from "@chakra-ui/react"
 import TrialCard from "./TrialCard"
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi"
 import { useEffect } from "react"
@@ -23,35 +23,52 @@ const TrialGrid = ({ trials, page, setPage }) => {
     }, [page])
 
     return (
-        <Stack gap={4}>
-            <Stack gap='4'>
-                {visibleItems.map((trial) => (
-                    <TrialCard key={trial.id} trial={trial} />
-                ))}
-            </Stack>
-            <Pagination.Root count={trials.length} pageSize={pageSize} page={page} onPageChange={handlePageChange}>
-                <ButtonGroup variant={'ghost'} size={'sm'}>
-                    <Pagination.PrevTrigger asChild>
-                        <IconButton>
-                            <HiChevronLeft />
-                        </IconButton>
-                    </Pagination.PrevTrigger>
+        <>
+            {trials.length !== 0 && (
+                <Stack gap={4}>
+                    <Stack gap='4'>
+                        {visibleItems.map((trial) => (
+                            <TrialCard key={trial.id} trial={trial} />
+                        ))}
+                    </Stack>
+                    <Pagination.Root count={trials.length} pageSize={pageSize} page={page} onPageChange={handlePageChange}>
+                        <ButtonGroup variant={'ghost'} size={'sm'}>
+                            <Pagination.PrevTrigger asChild>
+                                <IconButton>
+                                    <HiChevronLeft />
+                                </IconButton>
+                            </Pagination.PrevTrigger>
 
-                    <Pagination.Items render={page => (
-                        <IconButton variant={{ base: 'ghost', _selected: 'outline' }}>
-                            {page.value}
-                        </IconButton>
-                    )}
-                    />
+                            <Pagination.Items render={page => (
+                                <IconButton variant={{ base: 'ghost', _selected: 'outline' }}>
+                                    {page.value}
+                                </IconButton>
+                            )}
+                            />
 
-                    <Pagination.NextTrigger asChild>
-                        <IconButton>
-                            <HiChevronRight />
-                        </IconButton>
-                    </Pagination.NextTrigger>
-                </ButtonGroup>
-            </Pagination.Root>
-        </Stack>
+                            <Pagination.NextTrigger asChild>
+                                <IconButton>
+                                    <HiChevronRight />
+                                </IconButton>
+                            </Pagination.NextTrigger>
+                        </ButtonGroup>
+                    </Pagination.Root>
+                </Stack>
+            )}
+
+            {trials.length === 0 && (
+                <EmptyState.Root>
+                    <EmptyState.Content>
+                        <Stack textAlign="center">
+                            <EmptyState.Title>No results found</EmptyState.Title>
+                            <EmptyState.Description>
+                                Try adjusting your search
+                            </EmptyState.Description>
+                        </Stack>
+                    </EmptyState.Content>
+                </EmptyState.Root>
+            )}
+        </>
     )
 }
 
