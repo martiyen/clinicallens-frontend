@@ -2,7 +2,7 @@ import { Menu, Portal, HStack, Button, Input } from "@chakra-ui/react"
 import { ColorModeButton } from "./ui/color-mode"
 import SearchBar from "./SearchBar"
 
-const MenuBar = ({ setTrials }) => {
+const MenuBar = ({ setTrials, setPage }) => {
     const handleLatests =  async () => {
         try {
             const res = await fetch('http://localhost:5000/trials/latests')
@@ -35,7 +35,7 @@ const MenuBar = ({ setTrials }) => {
     return (
         <>
             <HStack>
-                <SearchBar setTrials={setTrials} />
+                <SearchBar setTrials={setTrials} setPage={setPage} />
                 <Menu.Root>
                 <Menu.Trigger asChild>
                     <Button variant="outline" size="sm">

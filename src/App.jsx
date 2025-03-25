@@ -1,4 +1,4 @@
-import { Heading, Stack, Container, Flex } from "@chakra-ui/react"
+import { Heading, Stack, Container, Flex, LinkOverlay } from "@chakra-ui/react"
 import MenuBar from "./components/MenuBar"
 import { useState, useEffect } from "react"
 import TrialGrid from "./components/TrialGrid"
@@ -6,6 +6,7 @@ import TrialGrid from "./components/TrialGrid"
 function App() {
 
   const [trials, setTrials] = useState([])
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
     const getTrials = async () => {
@@ -29,11 +30,17 @@ function App() {
       <Stack minH="100vh">
         <Container maxWidth={'1200px'} my={4}>
           <Flex alignItems={'center'} justifyContent={'space-between'} marginBottom={4}>
-            <Heading>Clinical Lens</Heading>
-            <MenuBar setTrials={setTrials} />
+            <Stack position={'relative'}>
+              <Heading>
+                <LinkOverlay href="">
+                  Clinical Lens
+                </LinkOverlay>
+              </Heading>
+            </Stack>
+            <MenuBar setTrials={setTrials} setPage={setPage} />
           </Flex>
           <Flex justifyContent={'center'}>
-            <TrialGrid trials={trials} />
+            <TrialGrid trials={trials} page={page} setPage={setPage} />
           </Flex>
         </Container>
       </Stack>
