@@ -2,6 +2,7 @@ import { Heading, Stack, Container, Flex, LinkOverlay } from "@chakra-ui/react"
 import MenuBar from "./components/MenuBar"
 import { useState, useEffect } from "react"
 import TrialGrid from "./components/TrialGrid"
+import Statistics from "./components/Statistics"
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
             </Stack>
             <MenuBar setTrials={setTrials} setPage={setPage} />
           </Flex>
+          <Statistics />
           <Flex justifyContent={'center'}>
             <TrialGrid trials={trials} page={page} setPage={setPage} />
           </Flex>
