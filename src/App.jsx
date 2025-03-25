@@ -10,14 +10,13 @@ function App() {
   useEffect(() => {
     const getTrials = async () => {
         try {
-            const res = await fetch('http://localhost:5000/trials/latest')
+            const res = await fetch('http://localhost:5000/trials/latests')
             const data = await res.json()
 
             if (!res.ok) {
                 throw new Error(data.error)
             }
             setTrials(data)
-            console.log(data)
         } catch (error) {
             console.log(error)
         }
@@ -31,7 +30,7 @@ function App() {
         <Container maxWidth={'1200px'} my={4}>
           <Flex alignItems={'center'} justifyContent={'space-between'} marginBottom={4}>
             <Heading>Clinical Lens</Heading>
-            <MenuBar />
+            <MenuBar setTrials={setTrials} />
           </Flex>
           <Flex justifyContent={'center'}>
             <TrialGrid trials={trials} />
