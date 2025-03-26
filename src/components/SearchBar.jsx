@@ -1,6 +1,7 @@
 import { Group, IconButton, Input} from "@chakra-ui/react"
 import { useState } from "react"
 import { LuSearch } from "react-icons/lu"
+import { BASE_URL } from "@/App"
 
 const SearchBar = ({ setTrials, setPage }) => {
     const [textSearch, setTextSearch] = useState('')
@@ -9,7 +10,7 @@ const SearchBar = ({ setTrials, setPage }) => {
        event.preventDefault()
 
         try {
-            const res = await fetch(`http://localhost:5000/trials/${textSearch}`)
+            const res = await fetch(`${BASE_URL}/${textSearch}`)
             const data = await res.json()
 
             if (!res.ok) {

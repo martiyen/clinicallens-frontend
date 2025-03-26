@@ -1,5 +1,6 @@
 import { Card, Stack, Text } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
+import { BASE_URL } from "@/App"
 
 const Statistics = () => {
     const [trialCount, setTrialCount] = useState()
@@ -8,10 +9,10 @@ const Statistics = () => {
     useEffect(() => {
         const getStats = async () => {
             try {
-                const countRes = await fetch('http://localhost:5000/trials/count')
+                const countRes = await fetch(BASE_URL + '/count')
                 const countData = await countRes.json()
 
-                const sponsorsRes = await fetch('http://localhost:5000/trials/best-sponsors')
+                const sponsorsRes = await fetch(BASE_URL + '/best-sponsors')
                 const sponsorsData = await sponsorsRes.json()
 
                 setTrialCount(countData.total_trials)

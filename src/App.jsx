@@ -4,6 +4,8 @@ import { useState, useEffect } from "react"
 import TrialGrid from "./components/TrialGrid"
 import Statistics from "./components/Statistics"
 
+export const BASE_URL = import.meta.env.MODE === 'development' ? 'http://localhost:5000/trials' : '/trials'
+
 function App() {
 
   const [trials, setTrials] = useState([])
@@ -12,7 +14,7 @@ function App() {
   useEffect(() => {
     const getTrials = async () => {
         try {
-            const res = await fetch('http://localhost:5000/trials/latests')
+            const res = await fetch(BASE_URL + '/latests')
             const data = await res.json()
 
             if (!res.ok) {

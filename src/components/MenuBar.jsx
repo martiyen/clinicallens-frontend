@@ -1,11 +1,12 @@
-import { Menu, Portal, HStack, Button, Input } from "@chakra-ui/react"
+import { Menu, Portal, HStack, Button } from "@chakra-ui/react"
 import { ColorModeButton } from "./ui/color-mode"
 import SearchBar from "./SearchBar"
+import { BASE_URL } from "@/App"
 
 const MenuBar = ({ setTrials, setPage }) => {
     const handleLatests =  async () => {
         try {
-            const res = await fetch('http://localhost:5000/trials/latests')
+            const res = await fetch(BASE_URL + '/latests')
             const data = await res.json()
 
             if (!res.ok) {
@@ -19,7 +20,7 @@ const MenuBar = ({ setTrials, setPage }) => {
 
     const handleRandom =  async () => {
         try {
-            const res = await fetch('http://localhost:5000/trials/random')
+            const res = await fetch(BASE_URL + '/random')
             const data = await res.json()
 
             if (!res.ok) {
