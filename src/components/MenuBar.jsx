@@ -27,6 +27,7 @@ const MenuBar = ({ setTrials, setPage }) => {
                 throw new Error(data.error)
             }
             setTrials(data)
+            setPage(1)
         } catch (error) {
             console.log(error)
         }
